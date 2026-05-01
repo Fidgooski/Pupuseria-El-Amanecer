@@ -587,10 +587,26 @@ function MenuViewer({ lang: siteLang, viewerOpen, onViewerOpen, onViewerClose, i
               display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
             }}
           >
+            {/* Fixed close button — always on top, always tappable */}
+            <button
+              onClick={onViewerClose}
+              style={{
+                position: "fixed", top: 16, right: 16, zIndex: 600,
+                width: 52, height: 52, borderRadius: "50%",
+                background: `linear-gradient(135deg, ${C.orange}, ${C.orangeD})`,
+                border: "none", cursor: "pointer", color: "#fff",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: "0 4px 20px rgba(232,85,0,0.6)",
+                WebkitTapHighlightColor: "transparent",
+              }}
+            >
+              <X size={24} />
+            </button>
+
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0,
               display: "flex", alignItems: "center", justifyContent: "space-between",
-              padding: "16px 24px",
+              padding: "16px 80px 16px 24px",
               background: "linear-gradient(to bottom, rgba(0,0,0,0.9), transparent)",
               zIndex: 10,
             }}>
@@ -607,9 +623,6 @@ function MenuViewer({ lang: siteLang, viewerOpen, onViewerOpen, onViewerClose, i
                   onClick={() => { setMenuLang(l => l === "en" ? "es" : "en"); setPage(0); }}
                   style={{ background: C.orangeDim, border: `1px solid ${C.border}`, borderRadius: 999, padding: "7px 16px", color: C.orange, fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
                   <Globe size={13} /> {menuLang === "en" ? "Espanol" : "English"}
-                </button>
-                <button onClick={onViewerClose} style={{ width: 48, height: 48, borderRadius: "50%", background: `linear-gradient(135deg, ${C.orange}, ${C.orangeD})`, border: "none", cursor: "pointer", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 4px 16px rgba(232,85,0,0.5)" }}>
-                  <X size={22} />
                 </button>
               </div>
             </div>
